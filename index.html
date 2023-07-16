@@ -10,7 +10,35 @@
 
 <body>
 	<div id="app" v-cloak>
+		<div class="header">
+   			<div class="container">
+				<div class="logo">Product List</div>
+				<p>
+					<input type="text" v-model="productName" v-on:keypress.enter="saveProduct" >
+					<button class="btn" v-on:click="saveProduct">Add a new product</button>
+				</p>
+			</div>
+		</div>
 		
+		<div class="container">
+			<h2>
+        		<span>Products</span>
+        		<span class="product-num">{{ products.length }}</span>
+      		</h2>
+			<ul class="product-list">
+        		<li v-for="product in sortedProducts">
+					<span :class="{productActive:product.active}">{{product.name}}</span>
+					<button v-on:click="toggleActive(product)">
+						<span v-if="product.active">
+							Inactive
+						</span>
+						<span v-else>
+							Active
+						</span>
+					</button>
+					<button class="btn-remove" v-on:click="removeProduct(product)">Remove</button>
+				</li>
+		</div>
 
 	<div>
     <script src="https://unpkg.com/vue@next"></script>
