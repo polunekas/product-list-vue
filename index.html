@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,9 +15,9 @@
 	<div id="app" v-cloak>
 		<div class="header">
    			<div class="container">
-				<div class="logo">Product List</div>
-				<p>
-					<input type="text" v-model="productName" v-on:keypress.enter="saveProduct" >
+				<img src="./logo.png" alt="logo">
+				<p class="form">
+					<input type="text" placeholder="Enter Product" v-model="productName" v-on:keypress.enter="saveProduct" >
 					<button class="btn" v-on:click="saveProduct">Add a new product</button>
 				</p>
 			</div>
@@ -28,15 +31,17 @@
 			<ul class="product-list">
         		<li v-for="product in sortedProducts">
 					<span :class="{productActive:product.active}">{{product.name}}</span>
-					<button v-on:click="toggleActive(product)">
-						<span v-if="product.active">
-							Inactive
-						</span>
-						<span v-else>
-							Active
-						</span>
-					</button>
-					<button class="btn-remove" v-on:click="removeProduct(product)">Remove</button>
+					<div>
+						<button class="btn-act" v-on:click="toggleActive(product)">
+							<span v-if="product.active">
+								Activate
+							</span>
+							<span v-else>
+								Deactivate
+							</span>
+						</button>
+						<button class="btn-remove" v-on:click="removeProduct(product)">Remove</button>
+					</div>
 				</li>
 		</div>
 
