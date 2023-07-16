@@ -151,3 +151,15 @@ h2 .product-num {
   background-color: #676464;
   border-color: #676464;
 }
+
+@media (max-width: 950px) {
+	.container {
+		width: calc(100% - 50px);
+	}
+	.header .container .form input {
+		width: 200px;
+	}
+	.btn {
+		font-size: 10px;
+	}
+}
