@@ -1,9 +1,15 @@
+const STORAGE_KEY = 'vue-product-app-storage';
+
+
 Vue.createApp({
 	data() {
 		return {
 			products:[],
     		productName:''
 		}
+	},
+	created() {
+        this.products = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
 	},
 	computed: {
 		sortedProducts() {
@@ -21,13 +27,16 @@ Vue.createApp({
 				name:this.productName,
 				active:false
 			});
-			this.productName = ''
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(this.products));
+			this.productName = '';
 		},
 		toggleActive(product) {
-			product.active = !product.active
+			product.active = !product.active;
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(this.products));
 		},
 		removeProduct(product) {
-            this.products.splice(this.products.indexOf(product), 1)
+            this.products.splice(this.products.indexOf(product), 1);
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(this.products));
         }
 
 	}
